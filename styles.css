@@ -63,6 +63,7 @@ button:hover {
     border: 1px solid #4A90E2;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative; /* Positioning context for tooltip */
 }
 
 .person {
@@ -72,4 +73,22 @@ button:hover {
     margin: 5px;
     border-radius: 3px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    position: relative; /* Positioning context for tooltip */
+    cursor: pointer; /* Show pointer cursor on hover */
+}
+
+/* Tooltip style */
+.person:hover::after {
+    content: attr(title); /* Use the title attribute for the tooltip */
+    position: absolute;
+    bottom: 100%; /* Position above the person */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    white-space: nowrap; /* Prevent wrapping */
+    z-index: 10; /* Ensure it appears above other elements */
+    opacity: 0.8; /* Slightly transparent */
 }
