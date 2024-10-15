@@ -1,59 +1,21 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
+    background-color: #f9f9f9;
     color: #333;
+    padding: 20px;
 }
 
 h1 {
-    text-align: center;
     color: #4A90E2;
 }
 
-#people {
-    margin: 20px 0;
-    padding: 10px;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.controls {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-.controls label {
-    margin-right: 5px;
-    font-weight: bold;
+label {
+    margin-right: 10px;
 }
 
 input[type="number"] {
-    width: 60px;
-    padding: 5px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-button {
-    padding: 10px 15px;
-    background-color: #4A90E2;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #357ABD;
-}
-
-#teams {
-    margin-top: 20px;
+    margin-right: 20px;
+    width: 50px;
 }
 
 .team {
@@ -63,7 +25,6 @@ button:hover {
     border: 1px solid #4A90E2;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: relative; /* Positioning context for tooltip */
 }
 
 .person {
@@ -73,22 +34,40 @@ button:hover {
     margin: 5px;
     border-radius: 3px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    position: relative; /* Positioning context for tooltip */
-    cursor: pointer; /* Show pointer cursor on hover */
+    position: relative;
+    cursor: pointer;
 }
 
-/* Tooltip style */
 .person:hover::after {
-    content: attr(title); /* Use the title attribute for the tooltip */
+    content: attr(title);
     position: absolute;
-    bottom: 100%; /* Position above the person */
+    bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
     background-color: #333;
     color: #fff;
     padding: 5px;
     border-radius: 3px;
-    white-space: nowrap; /* Prevent wrapping */
-    z-index: 10; /* Ensure it appears above other elements */
-    opacity: 0.8; /* Slightly transparent */
+    white-space: nowrap;
+    z-index: 10;
+    opacity: 0.8;
+}
+
+.shuffled-person {
+    display: inline-block;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+    margin: 5px;
+    font-weight: bold;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
