@@ -1,69 +1,82 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Generator</title>
+    <title>Générateur d'Équipes</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Team Generator</h1>
-    <div id="people"></div>
+    <h1>Générateur d'Équipes</h1>
+    <div id="availablePeople" class="person"></div>
+    <div id="availableCount"></div>
     <br>
     <div>
-        <button id="generateButton">Generate Teams</button>
+        <button id="generateButton">Générer Équipes</button>
     </div>
     <div id="teams"></div>
 
     <script>
         const people = [
-            { name: "Alice", city: "PARIS" },
-            { name: "Bob", city: "PARIS" },
-            { name: "Charlie", city: "PARIS" },
-            { name: "David", city: "PARIS" },
-            { name: "Eva", city: "PARIS" },
-            { name: "Fay", city: "PARIS" },
-            { name: "George", city: "LYON" },
-            { name: "Hannah", city: "LYON" },
-            { name: "Ivan", city: "PARIS" },
-            { name: "Jack", city: "PARIS" },
-            { name: "Kate", city: "PARIS" },
-            { name: "Leo", city: "PARIS" },
-            { name: "Mia", city: "LILLE" },
-            { name: "Noah", city: "LILLE" },
-            { name: "Olivia", city: "LILLE" },
-            { name: "Paul", city: "LILLE" },
-            { name: "Quinn", city: "LILLE" },
-            { name: "Rita", city: "LILLE" },
-            { name: "Sam", city: "PARIS" },
-            { name: "Tina", city: "PARIS" },
-            { name: "Uma", city: "PARIS" },
-            { name: "Vince", city: "PARIS" },
-            { name: "Wendy", city: "LYON" },
-            { name: "Xander", city: "LYON" },
-            { name: "Yara", city: "LYON" },
-            { name: "Zane", city: "PARIS" },
-            { name: "Ava", city: "PARIS" },
-            { name: "Ben", city: "PARIS" },
-            { name: "Cora", city: "PARIS" },
-            { name: "Dylan", city: "PARIS" },
-            { name: "Ella", city: "PARIS" },
-            { name: "Finn", city: "PARIS" },
-            { name: "Gina", city: "PARIS" },
-            { name: "Hugo", city: "PARIS" },
-            { name: "Ivy", city: "LYON" },
-            { name: "Jake", city: "LYON" },
-            { name: "Kira", city: "LILLE" },
-            { name: "Leo", city: "LILLE" },
-            { name: "Mila", city: "PARIS" },
-            { name: "Nina", city: "PARIS" }
+            { entity: "ENTITE_A", function: "DEVELOPPEUR", name: "Alice", confirmed: 1 },
+            { entity: "ENTITE_A", function: "DEVELOPPEUR", name: "Bob", confirmed: 1 },
+            { entity: "ENTITE_A", function: "ASSISTANT", name: "Charlie", confirmed: 1 },
+            { entity: "ENTITE_A", function: "CHEF_DE_PROJET", name: "David", confirmed: 1 },
+            { entity: "ENTITE_A", function: "ANALYSTE", name: "Eve", confirmed: 1 },
+            { entity: "ENTITE_B", function: "DEVELOPPEUR", name: "Frank", confirmed: 1 },
+            { entity: "ENTITE_A", function: "TESTEUR", name: "Grace", confirmed: 1 },
+            { entity: "ENTITE_A", function: "MANAGER", name: "Heidi", confirmed: 1 },
+            { entity: "ENTITE_B", function: "DEVELOPPEUR", name: "Ivan", confirmed: 1 },
+            { entity: "ENTITE_A", function: "MANAGER", name: "Judy", confirmed: 1 },
+            { entity: "ENTITE_A", function: "DEVELOPPEUR", name: "Mallory", confirmed: 1 },
+            { entity: "ENTITE_C", function: "DEVELOPPEUR", name: "Niaj", confirmed: 1 },
+            { entity: "ENTITE_B", function: "DEVELOPPEUR", name: "Olivia", confirmed: 1 },
+            { entity: "ENTITE_A", function: "MANAGER", name: "Peggy", confirmed: 1 },
+            { entity: "ENTITE_A", function: "TESTEUR", name: "Sybil", confirmed: 1 },
+            { entity: "ENTITE_C", function: "TESTEUR", name: "Trent", confirmed: 1 },
+            { entity: "ENTITE_C", function: "TESTEUR", name: "Victor", confirmed: 1 },
+            { entity: "ENTITE_A", function: "ASSISTANT", name: "Walter", confirmed: 1 },
+            { entity: "ENTITE_A", function: "ANALYSTE", name: "Xena", confirmed: 1 },
+            { entity: "ENTITE_B", function: "DEVELOPPEUR", name: "Yara", confirmed: 1 },
+            { entity: "ENTITE_B", function: "ANALYSTE", name: "Zack", confirmed: 1 },
+            { entity: "ENTITE_A", function: "DEVELOPPEUR", name: "Zoe", confirmed: 1 },
+            { entity: "ENTITE_B", function: "CHEF_DE_PROJET", name: "Aiden", confirmed: 1 },
+            { entity: "ENTITE_C", function: "ANALYSTE", name: "Bella", confirmed: 1 },
+            { entity: "ENTITE_A", function: "MANAGER", name: "Caleb", confirmed: 1 },
+            { entity: "ENTITE_B", function: "DEVELOPPEUR", name: "Daisy", confirmed: 1 },
+            { entity: "ENTITE_A", function: "ANALYSTE", name: "Ethan", confirmed: 1 },
+            { entity: "ENTITE_A", function: "CHEF_DE_PROJET", name: "Finn", confirmed: 1 },
+            { entity: "ENTITE_B", function: "DEVELOPPEUR", name: "Grace", confirmed: 1 },
+            { entity: "ENTITE_A", function: "MANAGER", name: "Henry", confirmed: 1 },
+            { entity: "ENTITE_B", function: "DEVELOPPEUR", name: "Ivy", confirmed: 1 },
+            { entity: "ENTITE_A", function: "ANALYSTE", name: "Jack", confirmed: 1 },
+            { entity: "ENTITE_A", function: "TESTEUR", name: "Karen", confirmed: 1 },
+            { entity: "ENTITE_C", function: "DEVELOPPEUR", name: "Leo", confirmed: 1 },
+            { entity: "ENTITE_A", function: "CHEF_DE_PROJET", name: "Maya", confirmed: 1 },
+            { entity: "ENTITE_A", function: "ASSISTANT", name: "Nina", confirmed: 1 },
+            { entity: "ENTITE_B", function: "CHEF_DE_PROJET", name: "Oscar", confirmed: 1 },
+            { entity: "ENTITE_C", function: "TESTEUR", name: "Paula", confirmed: 1 },
+            { entity: "ENTITE_A", function: "TESTEUR", name: "Téo", confirmed: 1 },
+            { entity: "ENTITE_A", function: "ASSISTANT", name: "Laura", confirmed: 1 },
         ];
+
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [array[i], array[j]] = [array[j], array[i]];
             }
+        }
+
+        function displayAvailableCount() {
+            const availablePeople = people.filter(person => person.confirmed === 1);
+            const countDiv = document.getElementById('availableCount');
+            const availableDiv = document.getElementById('availablePeople');
+
+            countDiv.innerHTML = `Nombre de personnes disponibles : ${availablePeople.length}`;
+    
+            // Utilisation de HTML pour styliser chaque personne
+            availableDiv.innerHTML = "<strong>Personnes disponibles :</strong><br>" + 
+                availablePeople.map(p => `<span class="person" title="${p.function}">${p.name}</span>`).join(' ');
         }
 
         function updateShuffledNames(teams) {
@@ -85,78 +98,74 @@
 
         function displayFinalTeams(teams) {
             const teamsDiv = document.getElementById('teams');
-            teamsDiv.innerHTML = "<h2>Generated Teams</h2>";
+            teamsDiv.innerHTML = "<h2>Équipes Générées</h2>";
             teams.forEach((team, index) => {
-                const teamInfo = team.map(p => `<span class="person" title="${p.city}">${p.name}</span>`).join(' ');
-                teamsDiv.innerHTML += `<div class="team">Team ${index + 1}: ${teamInfo}</div>`;
+                const teamInfo = team.map(p => `<span class="person" title="${p.entity}, ${p.function}">${p.name}</span>`).join(' ');
+                teamsDiv.innerHTML += `<div class="team">Équipe ${index + 1}: ${teamInfo}</div>`;
             });
         }
 
         function generateTeams() {
-            const teamCount = 8;
-            const peoplePerTeam = 5;
+            const teamCount = 8; // Nombre d'équipes à créer
+            const peoplePerTeam = 5; // Nombre de personnes par équipe
             const teams = Array.from({ length: teamCount }, () => []);
-            const cities = { "PARIS": [], "LYON": [], "LILLE": [] };
-
-            // Fill cities array
-            people.forEach(person => cities[person.city].push(person));
+            const availablePeople = people.filter(person => person.confirmed === 1);
+            const uniqueEntities = [...new Set(availablePeople.map(person => person.entity))];
+            const uniqueFunctions = [...new Set(availablePeople.map(person => person.function))];
 
             // Total people check
             let totalPeople = teamCount * peoplePerTeam;
-            if (totalPeople > people.length) {
-                alert("Not enough available people for the requested number of teams and team size.");
+            if (totalPeople > availablePeople.length) {
+                alert("Pas assez de personnes disponibles pour le nombre d'équipes et de personnes par équipe demandé.");
                 return;
             }
 
-            const uniqueCities = Object.keys(cities).filter(city => cities[city].length > 0);
+            // Mélanger les personnes disponibles pour une distribution aléatoire
+            shuffleArray(availablePeople);
 
+            // Remplir les équipes avec la priorité de mélange d'entités et de fonctions
             for (let i = 0; i < teamCount; i++) {
-                const assignedCities = new Set(); // Track cities already assigned to the current team
-                let teamMembersCount = 0;
+                const assignedEntities = new Set(); // Suivre les entités déjà assignées à l'équipe actuelle
+                const assignedFunctions = new Set(); // Suivre les fonctions déjà assignées à l'équipe actuelle
 
-                // Fill the team with unique cities first
-                while (teamMembersCount < peoplePerTeam) {
-                    const cityKeys = uniqueCities.filter(city => cities[city].length > 0 && !assignedCities.has(city));
-                    
-                    if (cityKeys.length > 0) {
-                        const city = cityKeys[Math.floor(Math.random() * cityKeys.length)];
-                        const index = Math.floor(Math.random() * cities[city].length);
-                        const selectedPerson = cities[city][index];
-                        teams[i].push(selectedPerson);
-                        assignedCities.add(city);
-                        cities[city].splice(index, 1); // Remove the person from the list
-                        teamMembersCount++;
-                    } else {
-                        break; // No more unique cities left
+                for (let j = 0; j < peoplePerTeam; j++) {
+                    for (let k = 0; k < availablePeople.length; k++) {
+                        const person = availablePeople[k];
+
+                        // Vérifier si la personne peut être ajoutée à l'équipe
+                        if (!assignedEntities.has(person.entity) && !assignedFunctions.has(person.function)) {
+                            teams[i].push(person);
+                            assignedEntities.add(person.entity);
+                            assignedFunctions.add(person.function);
+                            availablePeople.splice(k, 1); // Retirer la personne de la liste disponible
+                            break;
+                        }
                     }
-                }
-
-                // If the team is not filled, start reassigning from the available cities
-                while (teamMembersCount < peoplePerTeam) {
-                    const cityKeys = uniqueCities.filter(city => cities[city].length > 0);
-                    if (cityKeys.length === 0) break; // No more people left to assign
-                    
-                    const city = cityKeys[Math.floor(Math.random() * cityKeys.length)];
-                    const index = Math.floor(Math.random() * cities[city].length);
-                    const selectedPerson = cities[city][index];
-                    teams[i].push(selectedPerson);
-                    cities[city].splice(index, 1); // Remove the person from the list
-                    teamMembersCount++;
                 }
             }
 
-            // Start the live shuffling animation
+            // Distribution des personnes restantes si nécessaire
+            let remainingPeople = availablePeople.length;
+            if (remainingPeople > 0) {
+                for (let i = 0; i < teamCount && remainingPeople > 0; i++) {
+                    while (teams[i].length < peoplePerTeam && remainingPeople > 0) {
+                        teams[i].push(availablePeople.pop()); // Ajouter une personne restante à l'équipe
+                        remainingPeople--;
+                    }
+                }
+            }
+
+            // Afficher les équipes avec un effet de shuffle
             updateShuffledNames(teams);
         }
 
-        document.getElementById('generateButton').addEventListener('click', generateTeams);
+        document.getElementById('generateButton').addEventListener('click', () => {
+            displayAvailableCount();
+            generateTeams();
+        });
 
-        function displayPeople() {
-            const peopleDiv = document.getElementById('people');
-            peopleDiv.innerHTML = people.map(person => `<span class="person">${person.name}</span>`).join(' ');
-        }
-
-        displayPeople();
+        // Initial call to display available count
+        displayAvailableCount();
     </script>
 </body>
 </html>
