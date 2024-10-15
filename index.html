@@ -123,9 +123,8 @@
 
             // Display the generated teams
             const teamsDiv = document.getElementById('teams');
-            teamsDiv.innerHTML = "<h2>Generated Teams</h2>";
             teams.forEach((team, index) => {
-                const teamInfo = team.map(p => `<span class="person" title="${p.city}">${p.name}</span>`).join(', ');
+                const teamInfo = team.map(p => `<span class="person" title="${p.city}">${p.name}</span>`).join(' ');
                 teamsDiv.innerHTML += `<div class="team">Team ${index + 1}: ${teamInfo}</div>`;
             });
         }
