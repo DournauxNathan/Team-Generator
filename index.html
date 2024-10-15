@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur d'Équipes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Générateur d'Équipes</h1>
+    <div id="people"></div>
+    <div class="controls">
+        <label for="teamCount">Nombre d'équipes:</label>
+        <input type="number" id="teamCount" value="4" min="1">
+        <label for="peoplePerTeam">Nombre de personnes par équipe:</label>
+        <input type="number" id="peoplePerTeam" value="3" min="1">
+        <button id="generateButton">Générer Équipes</button>
+    </div>
+    <div id="teams"></div>
+
+    <script>
+        const people = [
+            { name: "Alice", city: "PARIS" },
+            { name: "Bob", city: "PARIS" },
+            { name: "Charlie", city: "PARIS" },
+            { name: "David", city: "PARIS" },
+            { name: "Eva", city: "PARIS" },
+            { name: "Fay", city: "PARIS" },
+            { name: "George", city: "LYON" },
+            { name: "Hannah", city: "LYON" },
+            { name: "Ivan", city: "PARIS" },
+            { name: "Jack", city: "PARIS" },
+            { name: "Kate", city: "PARIS" },
+            { name: "Leo", city: "PARIS" },
+            { name: "Mia", city: "LILLE" },
+            { name: "Noah", city: "LILLE" },
+            { name: "Olivia", city: "LILLE" },
+            { name: "Paul", city: "LILLE" },
+            { name: "Quinn", city: "LILLE" },
+            { name: "Rita", city: "LILLE" },
+            { name: "Sam", city: "PARIS" },
+            { name: "Tina", city: "PARIS" },
+            { name: "Uma", city: "PARIS" },
+            { name: "Vince", city: "PARIS" },
+            { name: "Wendy", city: "LYON" },
+            { name: "Xander", city: "LYON" },
+            { name: "Yara", city: "LYON" },
+            { name: "Zane", city: "PARIS" },
+            { name: "Ava", city: "PARIS" },
+            { name: "Ben", city: "PARIS" },
+            { name: "Cora", city: "PARIS" },
+            { name: "Dylan", city: "PARIS" },
+            { name: "Ella", city: "PARIS" },
+            { name: "Finn", city: "PARIS" },
+            { name: "Gina", city: "PARIS" },
+            { name: "Hugo", city: "PARIS" },
+            { name: "Ivy", city: "LYON" },
+            { name: "Jake", city: "LYON" },
+            { name: "Kira", city: "LILLE" },
+            { name: "Leo", city: "LILLE" },
+            { name: "Mila", city: "PARIS" },
+            { name: "Nina", city: "PARIS" }
+        ];
+
+        function displayPeople() {
+            const peopleDiv = document.getElementById('people');
+            peopleDiv.innerHTML = people.map(person => `<span class="person">${person.name}</span>`).join(' ');
+        }
+
+        function generateTeams() {
+            const teamCount = parseInt(document.getElementById('teamCount').value);
+            const peoplePerTeam = parseInt(document.getElementById('peoplePerTeam').value);
+            const teams = Array.from({ length: teamCount }, () => []);
+            const cities = { "PARIS": [], "LYON": [], "LILLE": [] };
+
+            // Fill cities array
+            people.forEach(person => cities[person.city].push(person));
+
+            // Total people check
+            let totalPeople = teamCount * peoplePerTeam;
+            if (totalPeople > people.length) {
+                alert("Pas assez de personnes disponibles pour le nombre d'équipes et la taille d'équipe demandée.");
+                return;
+            }
+
+            // Randomly assign people to teams
+            for (let i = 0; i < totalPeople; i++) {
+                const cityKeys = Object.keys(cities).filter(city => cities[city].length > 0);
+                const city = cityKeys[Math.floor(Math.random() * cityKeys.length)];
+                const index = Math.floor(Math.random() * cities[city].length);
+                const selectedPerson = cities[city][index];
+                teams[i % teamCount].push(selectedPerson);
+                cities[city].splice(index, 1); // Remove the person from the list
+            }
+
+            // Display the generated teams
+            const teamsDiv = document.getElementById('teams');
+            teamsDiv.innerHTML = "<h2>Équipes Générées</h2>";
+            teams.forEach((team, index) => {
+                teamsDiv.innerHTML += `<div class="team">Équipe ${index + 1}: ${team.map(p => p.name).join(', ')}</div>`;
+            });
+        }
+
+        document.getElementById('generateButton').addEventListener('click', generateTeams);
+
+        displayPeople();
+    </script>
+</body>
+</html>
